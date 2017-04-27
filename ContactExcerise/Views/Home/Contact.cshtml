@@ -1,0 +1,109 @@
+﻿
+@{
+    ViewBag.Title = "Contact";
+}
+<head>
+    <script src="~/Scripts/angular.js"></script>
+    <script src="~/Scripts/CustomJS.js"></script>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+</head>
+<h2>Contacts</h2>
+<div ng-app="contactModule" id="body">
+    <div ng-controller="demoCtrl">
+        <h3>List of Contacts</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th style="display:none">ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="items in ContactData">
+                    <td hidden="hidden">{{items.CId}}</td>
+                    <td>{{items.FirstName}}</td>
+                    <td>{{items.LastName}}</td>
+                    <td>{{items.PhoneNumber}}</td>
+                    <td>{{items.Email}}</td>
+                    <td>{{items.status}}</td>
+                    <td>
+                        <button ng-model="$scope.Contact" ng-click="edit(ContactData[$index])">Edit</button>
+                        <button ng-click="delete($index)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>            
+        </table>
+        <br/>
+        <div style="border-top: solid 2px #282828; width: 430px; height: 10px"> </div>
+
+        <div ng-show="Contact.CID != '' ">
+            <div>
+                <h2>Update Product</h2>
+            </div>
+            <div hidden="hidden">
+                <label for="CID">ID</label>
+                <input type="text" data-ng-model="Contact.CID" />
+            </div>
+            <div>
+                <label for="FirstName">First Name</label>
+                <input type="text" data-ng-model="Contact.FirstName" />
+            </div>
+            <div>
+                <label for="LastName">Last Name</label>
+                <input type="text" data-ng-model="Contact.LastName" />
+            </div>
+            <div>
+                <label for="Phone">Phone</label>
+                <input type="text" data-ng-model="Contact.PhoneNumber" />
+            </div>
+            <div>
+                <label for="Email">Email</label>
+                <input type="text" data-ng-model="Contact.Email" />
+            </div>
+            <div>
+                <label for="Status">Status</label>
+                <input type="text" data-ng-model="Contact.Status" />
+            </div>
+            <br/>
+            <div>
+                <button data-ng-click="update()">Update</button>
+                <button data-ng-click="cancel()">Cancel</button>
+            </div>
+        </div>
+
+        <div ng-hide="Contact.CID != ''">
+            <div>
+                <h2>Add New Contact</h2>
+            </div>
+            <div>
+                <label for="FirstName">First Name</label>
+                <input type="text" data-ng-model="Contact.FirstName"/>
+            </div>
+            <div>
+                <label for="LastName">Last Name</label>
+                <input type="text" data-ng-model="Contact.LastName" />
+            </div>
+            <div>
+                <label for="Phone">Phone</label>
+                <input type="text" data-ng-model="Contact.PhoneNumber" />
+            </div>
+            <div>
+                <label for="Email">Email</label>
+                <input type="text" data-ng-model="Contact.Email" />
+            </div>
+            <div>
+                <label for="Status">Status</label>
+                <input type="text" data-ng-model="Contact.Status" />
+            </div>
+            <br/>
+            <div>
+                <button data-ng-click="save()">Save</button>
+                <button data-ng-click="clear()">Clear</button>
+            </div>
+        </div>
+    </div>
+</div>
